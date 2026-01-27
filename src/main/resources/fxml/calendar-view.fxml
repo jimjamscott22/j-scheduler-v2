@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.jscheduler.controller.CalendarController"
+            styleClass="calendar-view">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <!-- Header with navigation -->
+    <top>
+        <HBox alignment="CENTER" spacing="20">
+            <padding>
+                <Insets bottom="20"/>
+            </padding>
+            <Button text="&lt; Previous" onAction="#handlePreviousMonth" styleClass="nav-button"/>
+            <Button text="Today" onAction="#handleToday" styleClass="nav-button"/>
+            <Label fx:id="monthYearLabel" text="January 2026" styleClass="month-year-label"/>
+            <Button text="Next &gt;" onAction="#handleNextMonth" styleClass="nav-button"/>
+        </HBox>
+    </top>
+
+    <!-- Calendar Grid -->
+    <center>
+        <GridPane fx:id="calendarGrid" styleClass="calendar-grid"
+                  hgap="2" vgap="2"
+                  alignment="CENTER">
+        </GridPane>
+    </center>
+
+    <!-- Upcoming assignments sidebar -->
+    <right>
+        <VBox prefWidth="250" styleClass="upcoming-panel">
+            <padding>
+                <Insets left="20"/>
+            </padding>
+
+            <Label text="Upcoming (2 weeks)" styleClass="section-header"/>
+
+            <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
+                <VBox fx:id="upcomingList" spacing="5">
+                </VBox>
+            </ScrollPane>
+        </VBox>
+    </right>
+</BorderPane>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.jscheduler.controller.AssignmentController"
+      spacing="15"
+      prefWidth="450">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <Label text="Assignment for:" styleClass="dialog-header"/>
+        <Label fx:id="courseLabel" styleClass="course-label"/>
+    </HBox>
+
+    <GridPane hgap="10" vgap="10">
+        <Label text="Title:*" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <TextField fx:id="titleField" promptText="e.g., Homework 1" prefWidth="300"
+                   GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+        <Label text="Due Date:*" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <HBox spacing="10" alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <DatePicker fx:id="dueDatePicker" prefWidth="150"/>
+            <Spinner fx:id="dueHourSpinner" prefWidth="70"/>
+            <Label text=":"/>
+            <Spinner fx:id="dueMinuteSpinner" prefWidth="70"/>
+        </HBox>
+
+        <Label text="Status:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+        <HBox spacing="10" alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <ComboBox fx:id="statusComboBox" prefWidth="150"/>
+            <Button text="Mark In Progress" onAction="#handleMarkInProgress" styleClass="quick-action"/>
+            <Button text="Mark Submitted" onAction="#handleMarkSubmitted" styleClass="quick-action"/>
+        </HBox>
+
+        <Label text="Description:" GridPane.columnIndex="0" GridPane.rowIndex="3"
+               GridPane.valignment="TOP"/>
+        <TextArea fx:id="descriptionArea" promptText="Assignment details..."
+                  prefRowCount="3" prefWidth="300"
+                  GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+        <Label text="Notes:" GridPane.columnIndex="0" GridPane.rowIndex="4"
+               GridPane.valignment="TOP"/>
+        <TextArea fx:id="notesArea" promptText="Personal notes..."
+                  prefRowCount="3" prefWidth="300"
+                  GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+    </GridPane>
+
+    <Label text="* Required fields" styleClass="hint-text"/>
+</VBox>

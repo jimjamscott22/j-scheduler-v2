@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.jscheduler.controller.MainController"
+            fx:id="rootPane"
+            styleClass="root-pane">
+
+    <!-- Top Menu Bar -->
+    <top>
+        <VBox>
+            <MenuBar>
+                <Menu text="File">
+                    <MenuItem text="Refresh" onAction="#handleRefresh" accelerator="F5"/>
+                    <SeparatorMenuItem/>
+                    <MenuItem text="Exit" onAction="#handleExit"/>
+                </Menu>
+                <Menu text="Course">
+                    <MenuItem text="Add Course..." onAction="#handleAddCourse"/>
+                    <MenuItem text="Edit Course..." onAction="#handleEditCourse"/>
+                    <MenuItem text="Delete Course" onAction="#handleDeleteCourse"/>
+                </Menu>
+                <Menu text="Assignment">
+                    <MenuItem text="Add Assignment..." onAction="#handleAddAssignment"/>
+                    <MenuItem text="Delete Assignment" onAction="#handleDeleteAssignment"/>
+                </Menu>
+                <Menu text="View">
+                    <MenuItem text="Calendar" onAction="#handleShowCalendar"/>
+                </Menu>
+                <Menu text="Help">
+                    <MenuItem text="About" onAction="#handleAbout"/>
+                </Menu>
+            </MenuBar>
+
+            <!-- Toolbar -->
+            <ToolBar>
+                <Button text="+ Course" onAction="#handleAddCourse" styleClass="toolbar-button"/>
+                <Button text="+ Assignment" onAction="#handleAddAssignment" styleClass="toolbar-button"/>
+                <Separator orientation="VERTICAL"/>
+                <Button text="Calendar" onAction="#handleShowCalendar" styleClass="toolbar-button"/>
+                <Separator orientation="VERTICAL"/>
+                <TextField fx:id="searchField" promptText="Search..." prefWidth="200"/>
+                <ComboBox fx:id="filterComboBox" prefWidth="120"/>
+                <Pane HBox.hgrow="ALWAYS"/>
+                <Button text="Refresh" onAction="#handleRefresh" styleClass="toolbar-button"/>
+            </ToolBar>
+        </VBox>
+    </top>
+
+    <!-- Left Panel: Course List -->
+    <left>
+        <VBox prefWidth="250" styleClass="side-panel">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <Label text="Courses" styleClass="section-header"/>
+
+            <ListView fx:id="courseListView" VBox.vgrow="ALWAYS">
+                <contextMenu>
+                    <ContextMenu>
+                        <MenuItem text="Add Course..." onAction="#handleAddCourse"/>
+                        <MenuItem text="Edit Course..." onAction="#handleEditCourse"/>
+                        <SeparatorMenuItem/>
+                        <MenuItem text="Delete Course" onAction="#handleDeleteCourse"/>
+                    </ContextMenu>
+                </contextMenu>
+            </ListView>
+
+            <HBox spacing="5" alignment="CENTER">
+                <padding>
+                    <Insets top="10"/>
+                </padding>
+                <Button text="Add" onAction="#handleAddCourse" prefWidth="70"/>
+                <Button text="Edit" onAction="#handleEditCourse" prefWidth="70"/>
+                <Button text="Delete" onAction="#handleDeleteCourse" prefWidth="70"/>
+            </HBox>
+        </VBox>
+    </left>
+
+    <!-- Center: Assignment Table -->
+    <center>
+        <VBox styleClass="main-content">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <Label text="Assignments" styleClass="section-header"/>
+
+            <TableView fx:id="assignmentTableView" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="titleColumn" text="Title" prefWidth="300"/>
+                    <TableColumn fx:id="dueDateColumn" text="Due Date" prefWidth="150"/>
+                    <TableColumn fx:id="statusColumn" text="Status" prefWidth="100"/>
+                </columns>
+                <contextMenu>
+                    <ContextMenu>
+                        <MenuItem text="Add Assignment..." onAction="#handleAddAssignment"/>
+                        <SeparatorMenuItem/>
+                        <MenuItem text="Delete Assignment" onAction="#handleDeleteAssignment"/>
+                    </ContextMenu>
+                </contextMenu>
+                <placeholder>
+                    <Label text="No assignments. Select a course or add a new assignment."/>
+                </placeholder>
+            </TableView>
+
+            <HBox spacing="5" alignment="CENTER_RIGHT">
+                <padding>
+                    <Insets top="10"/>
+                </padding>
+                <Button text="Add Assignment" onAction="#handleAddAssignment"/>
+                <Button text="Delete" onAction="#handleDeleteAssignment"/>
+            </HBox>
+        </VBox>
+    </center>
+
+    <!-- Right Panel: Dashboard -->
+    <right>
+        <VBox fx:id="dashboardPane" prefWidth="200" styleClass="side-panel">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <Label text="Quick Stats" styleClass="section-header"/>
+
+            <VBox spacing="10" styleClass="stats-panel">
+                <Label text="Upcoming this week:" styleClass="stat-label"/>
+                <Label text="Overdue:" styleClass="stat-label"/>
+            </VBox>
+        </VBox>
+    </right>
+
+    <!-- Bottom: Status Bar -->
+    <bottom>
+        <HBox styleClass="status-bar" alignment="CENTER_LEFT">
+            <padding>
+                <Insets top="5" right="10" bottom="5" left="10"/>
+            </padding>
+            <Label fx:id="statusLabel" text="Ready"/>
+        </HBox>
+    </bottom>
+</BorderPane>
