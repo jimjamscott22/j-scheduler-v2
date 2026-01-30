@@ -34,6 +34,15 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.properties
+.flattened-pom.xml
+
+# Maven local repository (if accidentally placed in project)
+.m2/
+
+# Maven Wrapper
+mvnw
+mvnw.cmd
 
 # IDE
 .idea/

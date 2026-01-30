@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/21"
+<BorderPane xmlns="http://javafx.com/javafx/17"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.jscheduler.controller.MainController"
             fx:id="rootPane"
@@ -63,10 +63,12 @@
             <ListView fx:id="courseListView" VBox.vgrow="ALWAYS">
                 <contextMenu>
                     <ContextMenu>
-                        <MenuItem text="Add Course..." onAction="#handleAddCourse"/>
-                        <MenuItem text="Edit Course..." onAction="#handleEditCourse"/>
-                        <SeparatorMenuItem/>
-                        <MenuItem text="Delete Course" onAction="#handleDeleteCourse"/>
+                        <items>
+                            <MenuItem text="Add Course..." onAction="#handleAddCourse"/>
+                            <MenuItem text="Edit Course..." onAction="#handleEditCourse"/>
+                            <SeparatorMenuItem/>
+                            <MenuItem text="Delete Course" onAction="#handleDeleteCourse"/>
+                        </items>
                     </ContextMenu>
                 </contextMenu>
             </ListView>
@@ -99,9 +101,11 @@
                 </columns>
                 <contextMenu>
                     <ContextMenu>
-                        <MenuItem text="Add Assignment..." onAction="#handleAddAssignment"/>
-                        <SeparatorMenuItem/>
-                        <MenuItem text="Delete Assignment" onAction="#handleDeleteAssignment"/>
+                        <items>
+                            <MenuItem text="Add Assignment..." onAction="#handleAddAssignment"/>
+                            <SeparatorMenuItem/>
+                            <MenuItem text="Delete Assignment" onAction="#handleDeleteAssignment"/>
+                        </items>
                     </ContextMenu>
                 </contextMenu>
                 <placeholder>
