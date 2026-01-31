@@ -65,3 +65,6 @@ Thumbs.db
 
 # Application data (optional - uncomment to ignore)
 # data/
+
+# Database configuration (contains sensitive credentials)
+src/main/resources/database.properties

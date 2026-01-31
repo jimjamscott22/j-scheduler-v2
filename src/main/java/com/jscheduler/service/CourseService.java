@@ -2,7 +2,7 @@ package com.jscheduler.service;
 
 import com.jscheduler.model.Course;
 import com.jscheduler.model.Semester;
-import com.jscheduler.repository.DataRepository;
+import com.jscheduler.repository.CourseRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,9 +10,9 @@ import java.util.stream.Collectors;
 
 public class CourseService {
 
-    private final DataRepository repository;
+    private final CourseRepository repository;
 
-    public CourseService(DataRepository repository) {
+    public CourseService(CourseRepository repository) {
         this.repository = repository;
     }
 

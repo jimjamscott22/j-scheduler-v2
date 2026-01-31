@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class DataRepository {
+public class DataRepository implements CourseRepository {
 
     private static final String DATA_DIR = "data";
     private static final String DATA_FILE = "scheduler-data.json";

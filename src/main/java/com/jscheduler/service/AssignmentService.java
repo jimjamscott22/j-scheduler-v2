@@ -3,7 +3,7 @@ package com.jscheduler.service;
 import com.jscheduler.model.Assignment;
 import com.jscheduler.model.AssignmentStatus;
 import com.jscheduler.model.Course;
-import com.jscheduler.repository.DataRepository;
+import com.jscheduler.repository.CourseRepository;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -14,9 +14,9 @@ import java.util.stream.Collectors;
 
 public class AssignmentService {
 
-    private final DataRepository repository;
+    private final CourseRepository repository;
 
-    public AssignmentService(DataRepository repository) {
+    public AssignmentService(CourseRepository repository) {
         this.repository = repository;
     }
 

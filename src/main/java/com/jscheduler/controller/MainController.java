@@ -2,7 +2,8 @@ package com.jscheduler.controller;
 
 import com.jscheduler.model.Assignment;
 import com.jscheduler.model.Course;
-import com.jscheduler.repository.DataRepository;
+import com.jscheduler.repository.CourseRepository;
+import com.jscheduler.repository.MySQLCourseRepository;
 import com.jscheduler.service.AssignmentService;
 import com.jscheduler.service.CourseService;
 import com.jscheduler.service.NotificationService;
@@ -34,7 +35,7 @@ public class MainController {
     @FXML private Label statusLabel;
     @FXML private VBox dashboardPane;
 
-    private DataRepository repository;
+    private CourseRepository repository;
     private CourseService courseService;
     private AssignmentService assignmentService;
     private SearchService searchService;
@@ -45,31 +46,54 @@ public class MainController {
 
     @FXML
     public void initialize() {
-        // Initialize repository and services
-        repository = new DataRepository();
-        courseService = new CourseService(repository);
-        assignmentService = new AssignmentService(repository);
-        searchService = new SearchService(courseService, assignmentService);
-        notificationService = new NotificationService(assignmentService);
+        try {
+            // Initialize repository and services
+            repository = new MySQLCourseRepository();
+            courseService = new CourseService(repository);
+            assignmentService = new AssignmentService(repository);
+            searchService = new SearchService(courseService, assignmentService);
+            notificationService = new NotificationService(assignmentService);
 
-        // Initialize observable lists
-        courseList = FXCollections.observableArrayList();
-        assignmentList = FXCollections.observableArrayList();
+            // Initialize observable lists
+            courseList = FXCollections.observableArrayList();
+            assignmentList = FXCollections.observableArrayList();
 
-        // Setup UI components
-        setupCourseListView();
-        setupAssignmentTableView();
-        setupFilterComboBox();
-        setupSearchField();
+            // Setup UI components
+            setupCourseListView();
+            setupAssignmentTableView();
+            setupFilterComboBox();
+            setupSearchField();
 
-        // Load initial data
-        refreshCourseList();
-        refreshDashboard();
+            // Load initial data
+            refreshCourseList();
+            refreshDashboard();
 
-        // Start notification service
-        notificationService.start();
+            // Start notification service
+            notificationService.start();
 
-        updateStatusLabel("Ready");
+            updateStatusLabel("Ready");
+
+        } catch (Exception e) {
+            showDatabaseError("Failed to connect to database", e);
+        }
+    }
+
+    private void showDatabaseError(String message, Exception e) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Database Connection Error");
+        alert.setHeaderText(message);
+        alert.setContentText(
+            "Could not connect to MySQL database.\n\n" +
+            "Error: " + e.getMessage() + "\n\n" +
+            "Please check:\n" +
+            "1. MySQL server is running (192.168.1.25:3306)\n" +
+            "2. Database 'jscheduler_db' exists\n" +
+            "3. User credentials are correct in database.properties\n" +
+            "4. Network connectivity to database server"
+        );
+        alert.showAndWait();
+        System.err.println("Database connection failed: " + e.getMessage());
+        e.printStackTrace();
     }
 
     private void setupCourseListView() {
