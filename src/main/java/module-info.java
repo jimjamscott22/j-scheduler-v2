@@ -10,7 +10,7 @@ module com.jscheduler {
 
     opens com.jscheduler to javafx.fxml;
     opens com.jscheduler.controller to javafx.fxml;
-    opens com.jscheduler.model to com.fasterxml.jackson.databind;
+    opens com.jscheduler.model to com.fasterxml.jackson.databind, javafx.base;
 
     exports com.jscheduler;
     exports com.jscheduler.controller;
