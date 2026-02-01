@@ -38,11 +38,17 @@ public class AssignmentService {
                 .findFirst();
     }
 
-    public Assignment createAssignment(String courseId, String title, LocalDateTime dueDate) {
+    public Assignment createAssignment(String courseId, String title, LocalDateTime dueDate,
+                                       String description, String notes, AssignmentStatus status) {
         Optional<Course> courseOpt = repository.getCourseById(courseId);
         if (courseOpt.isPresent()) {
             Course course = courseOpt.get();
             Assignment assignment = new Assignment(title, dueDate);
+            assignment.setDescription(description);
+            assignment.setNotes(notes);
+            if (status != null) {
+                assignment.setStatus(status);
+            }
             course.addAssignment(assignment);
             repository.updateCourse(course);
             return assignment;

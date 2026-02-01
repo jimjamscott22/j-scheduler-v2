@@ -95,12 +95,8 @@ public class AssignmentController {
             assignmentService.updateAssignment(editingAssignment);
             return editingAssignment;
         } else {
-            Assignment assignment = assignmentService.createAssignment(course.getId(), title, dueDateTime);
-            assignment.setDescription(description);
-            assignment.setNotes(notes);
-            assignment.setStatus(status);
-            assignmentService.updateAssignment(assignment);
-            return assignment;
+            return assignmentService.createAssignment(
+                course.getId(), title, dueDateTime, description, notes, status);
         }
     }
 

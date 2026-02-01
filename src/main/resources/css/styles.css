@@ -109,7 +109,7 @@
 
 /* TableView */
 .table-view {
-    -fx-background-color: transparent;
+    -fx-background-color: -fx-box-border, -fx-control-inner-background;
     -fx-border-color: #dee2e6;
     -fx-border-radius: 4;
 }
@@ -127,8 +127,14 @@
 }
 
 .table-row-cell {
+    -fx-background-color: -fx-control-inner-background;
     -fx-border-color: transparent transparent #f0f0f0 transparent;
-    -fx-padding: 8;
+    -fx-padding: 4 8;
+    -fx-text-fill: #212529;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: -fx-control-inner-background-alt;
 }
 
 .table-row-cell:selected {
