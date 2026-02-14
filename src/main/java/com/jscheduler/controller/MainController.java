@@ -46,6 +46,7 @@ public class MainController {
 
     @FXML
     public void initialize() {
+        assignmentTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         try {
             // Initialize repository and services
             repository = new MySQLCourseRepository();

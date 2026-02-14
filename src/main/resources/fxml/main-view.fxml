@@ -93,11 +93,11 @@
 
             <Label text="Assignments" styleClass="section-header"/>
 
-            <TableView fx:id="assignmentTableView" VBox.vgrow="ALWAYS" columnResizePolicy="CONSTRAINED_RESIZE_POLICY">
+            <TableView fx:id="assignmentTableView" VBox.vgrow="ALWAYS">
                 <columns>
-                    <TableColumn fx:id="titleColumn" text="Title" prefWidth="300"/>
-                    <TableColumn fx:id="dueDateColumn" text="Due Date" prefWidth="150"/>
-                    <TableColumn fx:id="statusColumn" text="Status" prefWidth="100"/>
+                    <TableColumn fx:id="titleColumn" text="Title" minWidth="150"/>
+                    <TableColumn fx:id="dueDateColumn" text="Due Date" minWidth="100"/>
+                    <TableColumn fx:id="statusColumn" text="Status" minWidth="80"/>
                 </columns>
                 <contextMenu>
                     <ContextMenu>
