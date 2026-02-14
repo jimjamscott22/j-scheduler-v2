@@ -9,7 +9,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -29,7 +28,7 @@ public class DataRepository implements CourseRepository {
         this.objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         this.objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
-        this.dataFilePath = Paths.get(DATA_DIR, DATA_FILE);
+        this.dataFilePath = Path.of(DATA_DIR, DATA_FILE);
         this.courses = new ArrayList<>();
 
         initializeDataDirectory();
@@ -38,7 +37,7 @@ public class DataRepository implements CourseRepository {
 
     private void initializeDataDirectory() {
         try {
-            Files.createDirectories(Paths.get(DATA_DIR));
+            Files.createDirectories(Path.of(DATA_DIR));
         } catch (IOException e) {
             System.err.println("Failed to create data directory: " + e.getMessage());
         }

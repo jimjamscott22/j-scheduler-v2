@@ -185,8 +185,8 @@ public class MainController {
         int overdueCount = assignmentService.getOverdueAssignments().size();
         int upcomingCount = assignmentService.getUpcomingAssignments(7).size();
 
-        updateStatusLabel(String.format("Courses: %d | Assignments: %d | Upcoming: %d | Overdue: %d",
-            totalCourses, totalAssignments, upcomingCount, overdueCount));
+        updateStatusLabel("Courses: %d | Assignments: %d | Upcoming: %d | Overdue: %d".formatted(
+                totalCourses, totalAssignments, upcomingCount, overdueCount));
     }
 
     @FXML
@@ -385,9 +385,12 @@ public class MainController {
         about.setTitle("About J-Scheduler");
         about.setHeaderText("J-Scheduler v2.0.0");
         about.setContentText(
-            "A desktop application for tracking college assignments.\n\n" +
-            "Built with JavaFX and Java 21.\n\n" +
-            "Keep track of your courses and never miss a deadline!"
+            """
+            A desktop application for tracking college assignments.
+            
+            Built with JavaFX and Java 21.
+            
+            Keep track of your courses and never miss a deadline!"""
         );
         about.showAndWait();
     }
